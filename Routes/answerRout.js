@@ -5,7 +5,7 @@ const router = express.Router();
 const {
   answerQuestion,
   allAnswers,
-} = require("../controller/answerControler");
+} = require("../Controller/answerControler");
 
 // Route to post an answer
 router.post("/answer-question/questionid", answerQuestion);

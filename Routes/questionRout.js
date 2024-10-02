@@ -6,7 +6,7 @@ const {
   askQuestions,
   allQuestions,
   singleQuestions,
-} = require("../controller/questionController");
+} = require("../Controller/questionController");
 
 // Route to ask a question
 router.post("/ask-questions", askQuestions);

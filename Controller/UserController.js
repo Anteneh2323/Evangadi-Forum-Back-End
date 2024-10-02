@@ -9,13 +9,40 @@ const jwt = require("jsonwebtoken");
 async function Register(req, res) {
   const { username, firstname, lastname, email, password } = req.body;
 
+
   // Validate if all fields are filled
-  if (!username || !firstname || !lastname || !email || !password) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ msg: "Please fill all the fields" });
+   
+  if (!username) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ msg: "Username is required" });
   }
 
+  if (!firstname) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ msg: "First name is required" });
+  }
+
+  if (!lastname) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ msg: "Last name is required" });
+  }
+
+  if (!email) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ msg: "Email is required" });
+  }
+
+  if (!password) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ msg: "Password is required" });
+  }
+
+// If all fields are filled, you can proceed with your logic
   try {
     // Check if username or email already exists
     const [users] = await dbConnection.query(
