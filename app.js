@@ -77,8 +77,8 @@ const createAnswersTable = `
 async function start() {
   try {
     const result = await dbConnection.execute("select 'test' ");
-    await dbConnection.execute(createAnswersTable);
-    console.log("Users table created");
+    //await dbConnection.execute(createAnswersTable);
+    //console.log("Users table created");
 
 
     app.listen(port);
