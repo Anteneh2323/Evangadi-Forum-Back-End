@@ -1,27 +1,24 @@
-const { StatusCodes } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
+const secretKey = process.env.JWT_SECRET; // Ensure you are using the correct secret
 
-async function authMiddleware(req, res, next) {
-  const authHeader = req.headers.authorization;
+const authMiddleware = (req, res, next) => {
+  const token = req.header("Authorization")?.split(" ")[1]; // Extract token from Authorization header
 
-
-  
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Unauthorized" });
+  if (!token) {
+    return res
+      .status(401)
+      .json({ message: "Access denied. No token provided." });
   }
-  const token = authHeader.split(" ")[1];
+
   try {
-    // Decode the token
-    const { username, userid } = jwt.verify(token, process.env.JUT_SECRET);
+    // Verify the token and decode the payload
+    const decoded = jwt.verify(token, secretKey);
+    req.user = decoded; // Attach the decoded user info to the request
 
-    // Attach decoded data to the request object
-    req.user = { username, userid };
-
-    // Proceed to the next middleware or controller
-    next();
+    next(); // Proceed to the next middleware or route
   } catch (error) {
-    return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Invalid token" });
+    return res.status(400).json({ message: "Invalid token." });
   }
-}
+};
 
 module.exports = authMiddleware;

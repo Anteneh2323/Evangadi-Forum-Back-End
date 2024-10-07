@@ -1,19 +1,21 @@
 const mysql = require("mysql2");
+require("dotenv").config();
 
 // Create a connection pool
 const dbConnection = mysql.createPool({
-  user: process.env.USER,
-  database: process.env.DATABASE,
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
   host: "localhost",
-  password: process.env.PASSWORD,
+  password: process.env.DB_PASSWORD, // Ensure this matches the updated variable name
   connectionLimit: 10,
 });
 
-// dbConnection.execute("select'test'", (err, results) => {
+// Test connection (optional)
+// dbConnection.execute("SELECT 'test'", (err, results) => {
 //   if (err) {
-//     console.log(err.message);
+//     console.log("Database connection error:", err.message);
 //   } else {
-//     console.log(results);
+//     console.log("Database connection test successful:", results);
 //   }
 // });
 
