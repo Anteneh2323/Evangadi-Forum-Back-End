@@ -6,7 +6,6 @@ const cors = require("cors");
 
 app.use(cors());
 
-
 const dbConnection = require("./db/dbConfig");
 
 const createUsersTable = `
@@ -44,10 +43,9 @@ const createAnswersTable = `
 // Function to create tables sequentially
 async function createTables() {
   try {
- 
     const result = await dbConnection.execute("select 'test' ");
-    //console.log(result)
-     //
+    console.log(result);
+    //
     //
     await dbConnection.execute(createUsersTable);
     console.log("Users table created");
@@ -65,4 +63,3 @@ async function createTables() {
 }
 
 createTables();
-

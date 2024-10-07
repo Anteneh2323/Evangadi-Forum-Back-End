@@ -38,7 +38,6 @@ app.use("/api/answers", authMiddleware, answerRoute);
 
 // Function to handle the database query using async/await
 
-
 const createUsersTable = `
   CREATE TABLE IF NOT EXISTS users (
     userid INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +48,6 @@ const createUsersTable = `
     password VARCHAR(255) NOT NULL UNIQUE
   );
 `;
-
 
 const createQuestionTable = `
   CREATE TABLE IF NOT EXISTS question (
@@ -73,13 +71,11 @@ const createAnswersTable = `
   );
 `;
 
-
 async function start() {
   try {
     const result = await dbConnection.execute("select 'test' ");
     await dbConnection.execute(createAnswersTable);
     console.log("Users table created");
-
 
     app.listen(port);
     console.log("database connection established");

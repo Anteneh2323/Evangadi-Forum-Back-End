@@ -8,7 +8,7 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "module for install \r npm init \r nmp i mysql2\r npm i express \r  user rout question routs",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "code": "^5.2.4",
@@ -18,7 +18,12 @@
     "http": "^0.0.1-security",
     "http-status-codes": "^2.3.0",
     "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1",
     "mysql2": "^3.11.3",
-    "status": "^0.0.13"
+    "passport": "^0.7.0",
+    "status": "^0.0.6"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.7"
   }
 }
