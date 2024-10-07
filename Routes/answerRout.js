@@ -3,6 +3,13 @@ const router = express.Router();
 const { StatusCodes } = require("http-status-codes");
 
 // Import controller functions from answerController
+<<<<<<< HEAD
+=======
+const {
+  answerQuestion,
+  allAnswers,
+} = require("../Controller/answerControler");
+>>>>>>> 839131fa115f14a06166cf34dabe5916eecafabd
 
 const {
   singANScontroller,
