@@ -11,7 +11,7 @@ const {
 
 
 // Route to ask a question
-router.post("/askQuestion", askQuestion);
+router.post("/ask-question", askQuestion);
 
 // Route to get all questions
 router.get("/all-questions", getAllQuestions);

@@ -1,38 +1,28 @@
-# create data base by the name Evangadi-DB
-### short note 
+# Developer Guide 
+## Clone and Run
 
-module for install 
-npm init 
-nmp i mysql2
-npm i express 
- user rout question routs 
+```
+git clone https://github.com/Evangadi-Forum/Evangadi-Forum-Back-End.github
+cd Evangadi-Forum-Back-End
+npm install
+node app.js
+```
 
-// app.get ("/",(req,res)=>{
-//     res.send("welcome")
-// })
+## API Routes
 
-thunder extension
+Here are the available API routes organized by hierarchy:
 
-npm i bcrypt password inception
-
-npm install http-status-codes
-
-npm i express
-jwt 
-npm i jsonwebtoken
-to access we need package 
-
-npm i dotenv
-npm i core
-https://acte.ltd/utils/randomkeygen
-
-
-Evangadi-Back-End
-├── middleware
-│   └── authMiddleware.js
-├── routes
-|   |
-|   ├── User
-│   ├── answerRout.js
-│   └── questionRout.js
-└── app.js# Evangadi-Forem-Back-end
+### `/api`
+- `/users`
+  - `/register`
+  - `/login`
+  - `/check`
+  - `/forgot-password`
+- `/question`
+  - `/ask-question`
+  - `/all-questions`
+  - `/single-question/<question:id>`
+- `/answers`
+  - `/single-answer`
+  - `/all-answers`
+  - `/edit-answer/<answer:id>`

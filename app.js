@@ -36,7 +36,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 app.use(express.json());
 
 // usersRoutes middleware
-app.use("/api/users/", usersRoutes);
+app.use("/api/users", usersRoutes);
 
 // questionRoutes middleware
 app.use("/api/question", authMiddleware, questionRoutes);
