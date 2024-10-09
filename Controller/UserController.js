@@ -49,7 +49,7 @@ async function Register(req, res) {
   try {
     // Check if username or email already exists
     const [users] = await dbConnection.query(
-      "SELECT username, user_id FROM users WHERE username = ? OR email = ?",
+      "SELECT username, userid FROM users WHERE username = ? OR email = ?",
       [username, email]
     );
 
@@ -72,7 +72,7 @@ async function Register(req, res) {
 
     // Insert the new user into the database
     await dbConnection.query(
-      "INSERT INTO users (user_id, username, firstname, lastname, email, password) VALUES (?,?,?,?,?,?)",
+      "INSERT INTO users (userid, username, firstname, lastname, email, password) VALUES (?,?,?,?,?,?)",
       [user_id, username, firstname, lastname, email, hashedPassword]
     );
 
