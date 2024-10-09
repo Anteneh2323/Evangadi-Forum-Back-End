@@ -3,7 +3,7 @@ const dbConnection = require("../db/dbConfig");
 const { StatusCodes } = require("http-status-codes");
 
 // Post an answer
-const singANScontroller = async (req, res) => {
+const answerQuestion = async (req, res) => {
   const { question_id, user_id, answer } = req.body;
 
   if (!answer) {
@@ -73,7 +73,7 @@ const allAnswers = async (req, res) => {
 };
 
 // Edit an existing answer
-const editAnswerController = async (req, res) => {
+const editAnswer = async (req, res) => {
   const { answer_id } = req.params;
   const { answer } = req.body;
 
@@ -108,7 +108,7 @@ const editAnswerController = async (req, res) => {
 };
 
 module.exports = {
-  singANScontroller,
+  answerQuestion,
   allAnswers,
-  editAnswerController,
+  editAnswer,
 };

@@ -28,10 +28,7 @@ const questionRoutes = require("./Routes/questionRout");
 
 // answer routes middleware file
 const answerRoute = require("./Routes/answerRout");
-<<<<<<< HEAD
 
-=======
->>>>>>> 839131fa115f14a06166cf34dabe5916eecafabd
 // Import the authentication middleware
 const authMiddleware = require("./middleware/authMiddleware");
 
@@ -51,11 +48,9 @@ app.use("/api/answers", authMiddleware, answerRoute);
 // app.use("/api/answers", authMiddleware, answerRoute);
 
 // Function to handle the database query using async/await
-<<<<<<< HEAD
 async function start() {
   try {
     await dbConnection.execute("select 'test' ");
-=======
 
 
 const createUsersTable = `
@@ -93,17 +88,15 @@ const createAnswersTable = `
 `;
 
 
-async function start() {
-  try {
+//async function start() {
     const result = await dbConnection.execute("select 'test' ");
     //await dbConnection.execute(createAnswersTable);
     //console.log("Users table created");
 
 
->>>>>>> 839131fa115f14a06166cf34dabe5916eecafabd
     app.listen(port);
     console.log("database connection established");
-    console.log(`listening on ${port}`);
+    console.log(`listening on http://localhost:${port}`);
   } catch (error) {
     console.log(error.message);
   }
