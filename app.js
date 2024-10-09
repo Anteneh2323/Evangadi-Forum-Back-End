@@ -4,8 +4,18 @@ const app = express();
 const port = process.env.PORT;
 
 const cors = require("cors");
-
+// Middleware to handle CORS
 app.use(cors());
+
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PUT, DELETE, OPTIONS"
+//   );
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
 // db connection
 const dbConnection = require("./db/dbConfig");
@@ -18,25 +28,34 @@ const questionRoutes = require("./Routes/questionRout");
 
 // answer routes middleware file
 const answerRoute = require("./Routes/answerRout");
+<<<<<<< HEAD
+
+=======
+>>>>>>> 839131fa115f14a06166cf34dabe5916eecafabd
 // Import the authentication middleware
 const authMiddleware = require("./middleware/authMiddleware");
 
-//jason middle ware
+// json middleware
 app.use(express.json());
 
 // usersRoutes middleware
 app.use("/api/users/", usersRoutes);
 
-// usersRoutes middleware
+// questionRoutes middleware
 app.use("/api/question", authMiddleware, questionRoutes);
 
-// answer routes middleware ??
+// answer routes middleware
 app.use("/api/answers", authMiddleware, answerRoute);
 
-// answer routes middleware ??
-//app.use("/api/answers", authMiddleWare, answerRoute);
+// answer routes middleware (with authMiddleware if needed)
+// app.use("/api/answers", authMiddleware, answerRoute);
 
 // Function to handle the database query using async/await
+<<<<<<< HEAD
+async function start() {
+  try {
+    await dbConnection.execute("select 'test' ");
+=======
 
 
 const createUsersTable = `
@@ -81,6 +100,7 @@ async function start() {
     //console.log("Users table created");
 
 
+>>>>>>> 839131fa115f14a06166cf34dabe5916eecafabd
     app.listen(port);
     console.log("database connection established");
     console.log(`listening on ${port}`);

@@ -22,3 +22,21 @@ to access we need package
 npm i dotenv
 npm i core
 https://acte.ltd/utils/randomkeygen
+
+// SHOW INDEX FROM question WHERE Key_name = 'PRIMARY';
+// SHOW INDEX FROM employees WHERE Key_name = 'PRIMARY';
+
+
+SELECT
+    TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME, 
+    REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+FROM
+    INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE
+    TABLE_SCHEMA = 'my_database'
+    AND TABLE_NAME = 'employees'
+    AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+npm install crypto-js
+npm i nodemailer
+

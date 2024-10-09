@@ -5,7 +5,12 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 
 //user controllers
-const { Register, Login, CheckUser } = require("../Controller/UserController");
+const {
+  Register,
+  Login,
+  CheckUser,
+  ForgotPassword,
+} = require("../Controller/UserController");
 
 // register route
 router.post("/register", Register);
@@ -16,4 +21,7 @@ router.post("/login", Login);
 // check user route
 router.get("/check", authMiddleware, CheckUser);
 
+//forgotten password 
+
+router.post("/forgot-password", ForgotPassword);
 module.exports = router;
