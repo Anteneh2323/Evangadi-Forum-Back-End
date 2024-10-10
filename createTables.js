@@ -23,10 +23,9 @@ const createUsersTable = `
 const createQuestionTable = `
   CREATE TABLE IF NOT EXISTS question (
     questionid INT AUTO_INCREMENT PRIMARY KEY,
-    question TEXT NOT NULL,
-    questiondescription TEXT,
+    title TEXT NOT NULL,
+    description TEXT,
     userid INT,
-    postid VARCHAR(255) UNIQUE,
     FOREIGN KEY (userid) REFERENCES users(userid)
   );
 `;
@@ -49,8 +48,8 @@ async function createTables() {
     //console.log(result)
      //
     //
-    await dbConnection.execute(createUsersTable);
-    console.log("Users table created");
+    //await dbConnection.execute(createUsersTable);
+    //console.log("Users table created");
     //
     await dbConnection.query(createQuestionTable);
     console.log("Question table created");

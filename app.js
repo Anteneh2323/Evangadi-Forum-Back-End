@@ -4,8 +4,20 @@ const app = express();
 const port = process.env.PORT;
 
 const cors = require("cors");
+
+const corsOptions = {
+  //origin: "http://localhost:3000", // Adjust this to your frontend's URL if needed
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true, // Add this if you're handling cookies or authentication
+};
+
 // Middleware to handle CORS
-app.use(cors());
+app.use(cors(corsOptions));
+
+//const cors = require("cors");
+// Middleware to handle CORS
+//app.use(cors());
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");

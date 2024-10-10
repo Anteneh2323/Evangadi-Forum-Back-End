@@ -101,7 +101,7 @@ async function Login(req, res) {
   try {
     // Check if user exists by email
     const [users] = await dbConnection.query(
-      "SELECT username, user_id, password FROM users WHERE email = ?",
+      "SELECT username, userid, password FROM users WHERE email = ?",
       [email]
     );
 
@@ -164,10 +164,10 @@ async function CheckUser(req, res) {
 
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const { user_id, username } = decoded;
+    const { userid, username } = decoded;
 
     // Respond with user details
-    return res.status(StatusCodes.OK).json({ user_id, username });
+    return res.status(StatusCodes.OK).json({ userid, username });
   } catch (error) {
     console.error("Token validation failed:", error.message);
 

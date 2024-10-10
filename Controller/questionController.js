@@ -6,7 +6,8 @@ const { StatusCodes } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
 
 const askQuestion = async (req, res) => {
-  const { title, description, tag } = req.body; // Include tag in request body
+  const { title, description} = req.body; // Include tag in request body
+
 
   // Validate inputs
   if (
@@ -21,37 +22,36 @@ const askQuestion = async (req, res) => {
   }
 
   try {
+    //console.log(req)
     // Check if req.user is populated (user should be authenticated)
-    if (!req.user || !req.user.user_id) {
+    if (!req.user || !req.user.userid) {
       return res.status(StatusCodes.UNAUTHORIZED).json({
         msg: "User not authenticated.",
       });
     }
 
-    const { user_id } = req.user;
-    const question_id = crypto.randomUUID(); // Generate a unique question ID
+    const user_id = req.user.userid;
+    //console.log(req.user)
+    //const question_id = crypto.randomUUID(); // Generate a unique question ID
 
     // Check if tag is provided, otherwise generate one
-    const tagValue = tag || crypto.randomUUID(); // Use provided tag or generate a random one
+    //const tagValue = tag || crypto.randomUUID(); // Use provided tag or generate a random one
 
     const insertQuestionQuery =
-      "INSERT INTO question (question_id, title, user_id, description, tag) VALUES (?, ?, ?, ?, ?)";
+      "INSERT INTO question (title, userid, description) VALUES (?, ?, ?)";
 
-    console.log("Inserting question:", {
-      question_id,
-      title,
-      user_id,
-      description,
-      tag: tagValue,
-    });
+    //console.log("Inserting question:", {
+    //  title,
+    //  user_id,
+    //  description,
+    //  //tag: tagValue,
+    //});
 
     // Execute the query
     await dbConnection.query(insertQuestionQuery, [
-      question_id,
       title,
       user_id,
       description,
-      tagValue,
     ]);
 
     return res
