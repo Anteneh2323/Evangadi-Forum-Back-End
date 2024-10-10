@@ -70,7 +70,7 @@ const askQuestion = async (req, res) => {
 const getAllQuestions = async (req, res) => {
   try {
     const [questions] = await dbConnection.query(
-      "SELECT question.*, users.username FROM question JOIN users ON question.user_id = users.user_id ORDER BY question.question_id DESC"
+      "SELECT question.*, users.username FROM question JOIN users ON question.userid = users.userid ORDER BY question.questionid DESC"
     );
 
     if (questions.length === 0) {
@@ -101,19 +101,18 @@ const getSingleQuestion = async (req, res) => {
   try {
     const getSingleQuestionQuery = `
       SELECT 
-        q.question_id, 
+        q.questionid, 
         q.title, 
         q.description, 
-        q.tag, 
         u.username 
       FROM 
         question q
       JOIN 
         users u 
       ON 
-        q.user_id = u.user_id 
+        q.userid = u.userid 
       WHERE 
-        q.question_id = ?;
+        q.questionid = ?;
     `;
 
     const [question] = await dbConnection.query(getSingleQuestionQuery, [

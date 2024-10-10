@@ -20,7 +20,7 @@ router.post("/single-answer", async (req, res) => {
 });
 
 // Route to get all answers for a question
-router.get("/all-answers", async (req, res) => {
+router.get("/all-answers/:question_id", async (req, res) => {
   try {
     await allAnswers(req, res);
   } catch (error) {

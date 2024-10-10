@@ -14,7 +14,7 @@ const answerQuestion = async (req, res) => {
 
   try {
     const [singleQuestions] = await dbConnection.query(
-      "SELECT question.*, users.username FROM question JOIN users ON question.user_id = users.user_id WHERE question_id = ?",
+      "SELECT question.*, users.username FROM question JOIN users ON question.userid = users.userid WHERE questionid = ?",
       [question_id]
     );
 
@@ -25,7 +25,7 @@ const answerQuestion = async (req, res) => {
     }
 
     const answerQuery =
-      "INSERT INTO answers (user_id, question_id, answer) VALUES (?, ?, ?)";
+      "INSERT INTO answers (userid, questionid, answer) VALUES (?, ?, ?)";
     await dbConnection.query(answerQuery, [user_id, question_id, answer]);
 
     res.status(StatusCodes.CREATED).json({ msg: "Answer posted successfully" });
@@ -49,14 +49,15 @@ const allAnswers = async (req, res) => {
 
   try {
     const [answers] = await dbConnection.query(
-      "SELECT answers.*, users.username FROM answers JOIN users ON answers.user_id = users.user_id WHERE answers.question_id = ? ORDER BY answers.answer_id DESC",
+      "SELECT answers.*, users.username FROM answers JOIN users ON answers.userid = users.userid WHERE answers.questionid = ? ORDER BY answers.answerid DESC",
       [question_id]
     );
 
     if (answers.length === 0) {
       return res
         .status(StatusCodes.NOT_FOUND)
-        .json({ msg: `No answers found for question ID: ${question_id}` });
+        .json({ msg: `No answers found for question ID: ${question_id}`,
+                answers: []});
     }
 
     // Successful response with count of answers
